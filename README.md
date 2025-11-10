@@ -1,14 +1,16 @@
 # 📧 Bot Automático para Gmail
 
-Um bot simples em **Python** que automatiza o processo de criar e enviar novos e-mails no **Gmail**, clicando em posições pré-definidas na tela.
-Ele seleciona um modelo, preenche os campos e repete o processo quantas vezes você quiser — economizando tempo e evitando a repetição manual 🔁
+Um bot simples em **Python** que automatiza o processo de abrir e criar novos e-mails no **Gmail**, clicando em posições pré-definidas na tela.
+Ele também seleciona um modelo específico e repete o processo quantas vezes você quiser — economizando tempo e evitando repetição manual 🔁
 
 ---
 
 ## ⚙️ O que ele faz
 
-✅ Com o Gmail aberto em seu navegador, ele clica no botão de **“Escrever”**
-✅ Seleciona um **modelo** (salvo no Gmail)
+✅ Abre o Gmail (já logado e visível no navegador)
+✅ Clica no botão de **“Escrever”**
+✅ Abre o menu de **Modelos**
+✅ Seleciona um modelo específico
 ✅ Repete esse processo **N vezes**, conforme configurado
 ✅ Tudo isso **sem precisar de extensão no navegador**
 
@@ -16,8 +18,7 @@ Ele seleciona um modelo, preenche os campos e repete o processo quantas vezes vo
 
 ## 🧠 Objetivo
 
-Automatizar o envio de e-mails em massa **de forma simples**, apenas simulando os cliques e ações do usuário.
-Ideal para quem quer otimizar tarefas repetitivas dentro do Gmail, como disparos internos, testes ou comunicações padronizadas.
+Automatizar tarefas repetitivas dentro do Gmail — como inserir um modelo e preparar vários e-mails rapidamente — de forma simples, apenas simulando cliques e ações do usuário.
 
 ---
 
@@ -25,13 +26,14 @@ Ideal para quem quer otimizar tarefas repetitivas dentro do Gmail, como disparos
 
 * Python **3.8+**
 * Gmail aberto e visível na tela (mesma resolução e zoom usados na configuração)
-* Bibliotecas:
+* Bibliotecas necessárias:
 
   ```
   pyautogui
-  pyperclip
-  keyboard
+  time
   ```
+
+*(As bibliotecas `pyperclip` e `keyboard` não são obrigatórias neste projeto.)*
 
 ---
 
@@ -43,17 +45,17 @@ cd gmail-bot
 python -m venv venv
 source venv/bin/activate   # macOS / Linux
 venv\Scripts\activate      # Windows
-pip install -r requirements.txt
+pip install pyautogui
 ```
 
 ---
 
 ## 🛠️ Configuração
 
-O bot usa **coordenadas da tela** para clicar nos botões do Gmail.
-Você pode alterar as posições conforme sua resolução.
+O bot utiliza **coordenadas da tela** para clicar nos elementos do Gmail.
+Essas coordenadas podem variar conforme sua resolução ou zoom do navegador.
 
-Use o código abaixo para capturar as coordenadas na tela:
+Use o código abaixo para capturar as posições exatas:
 
 ```python
 import pyautogui
@@ -63,22 +65,28 @@ time.sleep(3)
 print(pyautogui.position())
 ```
 
-Abra o Gmail, posicione o mouse no botão desejado e veja no terminal as coordenadas X e Y.
-
-Altere no código.
+Abra o Gmail, posicione o mouse sobre o botão desejado e veja no terminal as coordenadas **X** e **Y**.
+Depois, substitua essas posições no código principal (`gmail_bot.py`).
 
 ---
 
 ## ▶️ Como usar
 
-Depois de configurar, basta rodar:
+Com o Gmail aberto e o código configurado com as posições certas, execute:
 
 ```bash
 python gmail_bot.py
 ```
 
-ou, se quiser basta clicar com o lado direito em **Abrir Com > Python**
+ou, se preferir, clique com o botão direito no arquivo e escolha:
+**“Abrir com > Python”**
 
+---
+
+## 🧪 Dica
+
+🔸 Antes de rodar com várias repetições, teste com `repeticoes = 1` para garantir que as posições estão corretas.
+🔸 Aguarde alguns segundos após iniciar — o script tem um pequeno `time.sleep(5)` antes de começar.
 
 ---
 
@@ -94,10 +102,6 @@ ou, se quiser basta clicar com o lado direito em **Abrir Com > Python**
 
 Distribuído sob a licença **MIT**.
 Veja o arquivo `LICENSE` para mais detalhes.
-
----
-Perfeito 💫
-Aqui vai apenas o final pra você adicionar no seu README:
 
 ---
 
